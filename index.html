@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AMI SOLAR CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">☀</div>
+        <div>
+          <h1>AMI SOLAR</h1>
+          <p>CRM Israël</p>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav active" data-page="dashboard">Dashboard</button>
+        <button class="nav" data-page="leads">Leads</button>
+        <button class="nav" data-page="clients">Clients</button>
+        <button class="nav" data-page="devis">Devis</button>
+        <button class="nav" data-page="planning">Planning</button>
+        <button class="nav" data-page="team">Équipe</button>
+        <button class="nav" data-page="commissions">Commissions</button>
+        <button class="nav" data-page="settings">Réglages</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <strong>Statut</strong>
+        <span class="pill green">Démo locale</span>
+        <p>Connectable à Supabase.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Plateforme commerciale</p>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="top-actions">
+          <button class="secondary" id="exportBtn">Exporter</button>
+          <button class="primary" id="newLeadBtn">+ Nouveau lead</button>
+        </div>
+      </header>
+
+      <section id="dashboard" class="page active">
+        <div class="cards">
+          <div class="card"><span>CA potentiel</span><strong>₪ 815,000</strong><small>10 ventes 20 kWc</small></div>
+          <div class="card"><span>Leads actifs</span><strong>42</strong><small>+8 cette semaine</small></div>
+          <div class="card"><span>Devis envoyés</span><strong>18</strong><small>7 relances à faire</small></div>
+          <div class="card"><span>Marge Ami Solar</span><strong>₪ 214,000</strong><small>prévisionnel</small></div>
+        </div>
+
+        <div class="grid two">
+          <div class="panel">
+            <h3>Pipeline commercial</h3>
+            <div class="pipeline">
+              <div><b>Nouveau</b><span>14</span></div>
+              <div><b>Contacté</b><span>11</span></div>
+              <div><b>Visite toit</b><span>8</span></div>
+              <div><b>Devis</b><span>6</span></div>
+              <div><b>Signé</b><span>3</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Actions urgentes</h3>
+            <ul class="tasks">
+              <li>Relancer David Cohen — devis 20.4 kWc</li>
+              <li>Appeler Bank Hapoalim pour taux crédit solaire</li>
+              <li>Planifier visite toiture à Netanya</li>
+              <li>Valider commission REMAX terrain</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="leads" class="page">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Leads</h3>
+            <button class="primary small" id="addLeadInline">Ajouter</button>
+          </div>
+          <div class="table-wrap">
+            <table id="leadsTable">
+              <thead><tr><th>Nom</th><th>Ville</th><th>Puissance</th><th>Source</th><th>Statut</th><th>Action</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" class="page">
+        <div class="panel">
+          <h3>Clients</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Client</th><th>Installation</th><th>Montant TTC</th><th>Avancement</th></tr></thead>
+              <tbody>
+                <tr><td>Yossi Ben David</td><td>20.4 kWc + batterie</td><td>₪ 81,500</td><td><span class="pill orange">Devis signé</span></td></tr>
+                <tr><td>Sarah Levi</td><td>15 kWc</td><td>₪ 63,000</td><td><span class="pill blue">Visite toit</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="devis" class="page">
+        <div class="panel">
+          <h3>Générateur de devis</h3>
+          <div class="form-grid">
+            <label>Puissance kWc<input id="kwc" type="number" value="20.4" step="0.1"></label>
+            <label>Prix vente TTC ₪<input id="price" type="number" value="81500"></label>
+            <label>Commission commerciale ₪<input id="commission" type="number" value="3500"></label>
+            <label>Coût pose / kWc ₪ HT<input id="pose" type="number" value="750"></label>
+          </div>
+          <button class="primary" id="calcBtn">Calculer marge</button>
+          <div id="quoteResult" class="result"></div>
+        </div>
+      </section>
+
+      <section id="planning" class="page">
+        <div class="panel">
+          <h3>Planning pose</h3>
+          <div class="calendar">
+            <div><b>Lundi</b><span>Netanya — 20 kWc</span></div>
+            <div><b>Mardi</b><span>Haifa — Visite toit</span></div>
+            <div><b>Mercredi</b><span>Ramat Poleg — 15 kWc</span></div>
+            <div><b>Jeudi</b><span>Tel Aviv — SAV onduleur</span></div>
+            <div><b>Vendredi</b><span>Relances devis</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="page">
+        <div class="panel">
+          <h3>Équipe</h3>
+          <div class="team-grid">
+            <div class="person"><b>Admin</b><span>Accès complet</span></div>
+            <div class="person"><b>Commercial</b><span>Leads + devis</span></div>
+            <div class="person"><b>Technicien</b><span>Planning + photos</span></div>
+            <div class="person"><b>Partenaire REMAX</b><span>Leads uniquement</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="commissions" class="page">
+        <div class="panel">
+          <h3>Commissions</h3>
+          <div class="cards">
+            <div class="card"><span>Maison mère</span><strong>₪ 2,000</strong><small>par vente</small></div>
+            <div class="card"><span>Commercial terrain</span><strong>₪ 3,500</strong><small>par vente</small></div>
+            <div class="card"><span>Ami Solar</span><strong id="amiMargin">₪ 21,400</strong><small>marge estimée</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="page">
+        <div class="panel">
+          <h3>Réglages Supabase</h3>
+          <p>Quand tu crées ton projet Supabase, remplace les valeurs dans <code>supabase.js</code>.</p>
+          <pre>SUPABASE_URL = "https://xxxx.supabase.co"
+SUPABASE_ANON_KEY = "ey..."</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="leadModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>Nouveau lead</h3>
+        <button id="closeModal">×</button>
+      </div>
+      <label>Nom<input id="leadName" placeholder="Ex: David Cohen"></label>
+      <label>Ville<input id="leadCity" placeholder="Ex: Netanya"></label>
+      <label>Puissance souhaitée<input id="leadPower" placeholder="Ex: 20.4 kWc"></label>
+      <label>Source<input id="leadSource" placeholder="Ex: REMAX / Facebook / Referral"></label>
+      <button class="primary full" id="saveLead">Enregistrer</button>
+    </div>
+  </div>
+
+  <script src="./supabase.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
